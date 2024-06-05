@@ -8,7 +8,7 @@ int Valor_Derecho = 0;
 int Valor_Centro = 0;
 int contVueltas = 0;
 
-robotLinea::robotLinea(uint8_t velocidadMotorIZ, uint8_t velocidadMotorDE, uint8_t si, uint8_t sd,uint8_t cen, uint8_t INI2, uint8_t INI3, uint8_t INI4, uint8_t INI5, int velocidadIzq, int velocidadDer) {
+robotLinea::robotLinea(uint8_t velocidadMotorIZQ, uint8_t velocidadMotorDER, uint8_t si, uint8_t sd,uint8_t cen, uint8_t INI2, uint8_t INI3, uint8_t INI4, uint8_t INI5, uint8_t velocidadIzq, uint8_t velocidadDer) {
 
   this->velocidadMotorIZQ = velocidadMotorIZQ;
   this->velocidadMotorDER = velocidadMotorDER;
@@ -19,6 +19,8 @@ robotLinea::robotLinea(uint8_t velocidadMotorIZ, uint8_t velocidadMotorDE, uint8
   this->INI3=INI3;
   this->INI4=INI4;
   this->INI5=INI5;
+  this->velocidadIzq = velocidadIzq; 
+  this->velocidadDer = velocidadDer;
   
   }
   
@@ -34,6 +36,7 @@ void robotLinea::ini(){
   pinMode(velocidadMotorDER, OUTPUT);
   analogWrite(velocidadMotorIZQ, velocidadIzq);
   analogWrite(velocidadMotorDER, velocidadDer);
+
 
 
 }
@@ -105,10 +108,11 @@ if (Valor_Derecho == 1 && Valor_Centro == 1 && Valor_Izquierdo == 0){
 
 if (Valor_Izquierdo ==0 && Valor_Centro == 0 && Valor_Derecho == 0){
       
-     if  (contVueltas <= 100){
+     if  (contVueltas  <= 100){
           giro_derecha();
           contVueltas = contVueltas + 1;
           Serial.println(contVueltas);
+          
          }      
         else {giro_izquierda();}
  } 
